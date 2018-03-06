@@ -1,7 +1,8 @@
 import numpy as np
-from scipy.integrate import odeint
-from scipy import integrate
-import matplotlib.pyplot as plt
+from sympy import *
+#from scipy.integrate import odeint
+#from scipy import integrate
+#import matplotlib.pyplot as plt
 
 def test_run():
 # 1. Padalinkite intervalą nuo -1.3 iki 2.5 tolygiai į 64 dalis.
@@ -75,41 +76,21 @@ def test_run():
     new_line()
 
 # 11.Pasirinktos funkcijos išvestinę
-    print("11. DIFFERENTIAL CALCULUS: \n")
+    x, y = symbols('x y')
+    init_printing(use_unicode=True)
+    deriv = diff(cos(x), x)
+    print("11. DERIVATIVE (of function  'cos(x)') :  \n", deriv)
     new_line()
-    # function that returns dy/dt
-    def model(y,t,k):
-        dydt = -k * y
-        return dydt
-
-    # initial condition
-    y0 = 5
-
-    # time points
-    t = np.linspace(0,20)
-
-    # solve ODEs
-    k = 0.1
-    y1 = odeint(model,y0,t,args=(k,))
-    k = 0.2
-    y2 = odeint(model,y0,t,args=(k,))
-    k = 0.5
-    y3 = odeint(model,y0,t,args=(k,))
-
-    # plot results
-    plt.plot(t,y1,'r-',linewidth=2,label='k=0.1')
-    plt.plot(t,y2,'b--',linewidth=2,label='k=0.2')
-    plt.plot(t,y3,'g:',linewidth=2,label='k=0.5')
-    plt.xlabel('time')
-    plt.ylabel('y(t)')
-    plt.legend()
-    plt.show()
-
 
 # 12.Pasirinktos funkcijos apibrėžtinį ir neapibrėžtinį integralus
+    '''
     x2 = lambda x: x**2
     int_def = integrate.quad(x2, 0, 4)
-    print("12. INTEGRAL (DEFINITE): \n", int_def)
+    '''
+    int_def = integrate(cos(x), x)
+    print("12. INTEGRAL (DEFINITE) (of function 'cos(x)') : \n", int_def)
+    int_indef = integrate(exp(-x**2 - y**2), (x, -oo, oo), (y, -oo, oo))
+    print("INTEGRAL (INDEFINITE) (of function 'exp(-x**2 - y**2), (x, -oo, oo), (y, -oo, oo)') : \n", int_indef)
     new_line()
 
 # end of tasks
