@@ -2,6 +2,11 @@
 
 \#2 task for Python course with numpy, scipy, matplotlib modules
 
+### Prerequisites
+```
+$ pip install numpy sympy
+```
+
 ### Running
 ```
 $ python3 numpytasks.py
